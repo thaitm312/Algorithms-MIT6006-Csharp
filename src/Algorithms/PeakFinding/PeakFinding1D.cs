@@ -47,20 +47,20 @@ namespace Algorithms.PeakFinding
             }
         }
 
-        public static int BinaryPeakFinding(int[] unSortedArray, int low, int high)
+        public static int BinaryPeakFinding(int[] unSortedArray, int startIndex, int endIndex)
         {
             int mid;
             while (true)
             {
-                mid = (high + low) / 2;
+                mid = (int)Math.Ceiling((startIndex + endIndex) / 2F);
 
                 if (mid != 0 && unSortedArray[mid] < unSortedArray[mid - 1])
                 {
-                    high = mid - 1;
+                    endIndex = mid - 1;
                 }
                 else if (mid != unSortedArray.Length - 1 && unSortedArray[mid] < unSortedArray[mid + 1])
                 {
-                    low = mid + 1;
+                    startIndex = mid + 1;
                 }
                 else
                 {
@@ -69,16 +69,16 @@ namespace Algorithms.PeakFinding
             }
         }
 
-        public static int RecursiveBinaryPeakFinding(int[] unSortedArray, int low, int high)
+        public static int RecursiveBinaryPeakFinding(int[] unSortedArray, int startIndex, int endIndex)
         {
-            int mid = (high + low) / 2;
+            int mid = (int)Math.Ceiling((startIndex + endIndex) / 2F);
             if (mid != 0 && unSortedArray[mid] < unSortedArray[mid - 1])
             {
-                return RecursiveBinaryPeakFinding(unSortedArray, low, mid - 1);
+                return RecursiveBinaryPeakFinding(unSortedArray, startIndex, mid - 1);
             }
             else if (mid != unSortedArray.Length - 1 && unSortedArray[mid] < unSortedArray[mid + 1])
             {
-                return RecursiveBinaryPeakFinding(unSortedArray, mid + 1, high);
+                return RecursiveBinaryPeakFinding(unSortedArray, mid + 1, endIndex);
             }
             else
             {
